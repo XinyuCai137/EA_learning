@@ -69,13 +69,6 @@ pop = (np.random.randint(2, size=(POP_SIZE, DNA_SIZE)))
 
 for _ in range(N_GENERATIONS) :
     F_value = f(translateDNA(pop))
-
-    # something about plotting
-    # if 'sca' in globals(): sca.remove()
-    # sca = plt.scatter(translateDNA(pop), F_value, s=200, lw=0, c='red', alpha=0.5); plt.pause(0.05)
-
-    # GA part (evolution)
-
     print("Most fitted DNA: ", pop[np.argmax(F_value), :], np.max(F_value))
     pop = select(pop, F_value)
     pop_copy = pop.copy()
@@ -83,5 +76,3 @@ for _ in range(N_GENERATIONS) :
         child = crossover(parent, pop_copy)
         child = mutate(child)
         parent[:] = child       # parent is replaced by its child
-
-# plt.ioff(); plt.show()
