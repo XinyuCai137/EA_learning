@@ -8,8 +8,8 @@ DNA_SIZE_X1 = 18
 DNA_SIZE_X2 = 15
 POP_SIZE = 100           # population size
 CROSS_RATE = 0.8         # mating probability (DNA crossover)
-MUTATION_RATE = 0.003    # mutation probability
-N_GENERATIONS = 4000
+MUTATION_RATE = 0.01     # mutation probability
+N_GENERATIONS = 1000
 X1_MAX = 12.1
 X1_MIN = -3
 X1_RANGE = 262143
@@ -66,13 +66,18 @@ def select(pop, fitness):    # nature selection wrt pop's fitness
 
 
 pop = (np.random.randint(2, size=(POP_SIZE, DNA_SIZE)))
+M_value = []
 
 for _ in range(N_GENERATIONS) :
     F_value = f(translateDNA(pop))
     print("Most fitted DNA: ", pop[np.argmax(F_value), :], np.max(F_value))
+    M_value.append(np.max(F_value))
     pop = select(pop, F_value)
     pop_copy = pop.copy()
     for parent in pop:
         child = crossover(parent, pop_copy)
         child = mutate(child)
         parent[:] = child       # parent is replaced by its child
+
+plt.plot(np.array(M_value))
+plt.show()
