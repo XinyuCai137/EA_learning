@@ -2,18 +2,19 @@
 """
 Created on Mon Sep 24 2018
 @author: Vegelofe
+Learned from Morvan Python
 """
 
 import numpy as np
 
 TARGET_PHRASE = 'To be or not to be'       # target DNA
 POP_SIZE = 300                      # population size
-CROSS_RATE = 0.4                    # mating probability (DNA crossover)
+CROSS_RATE = 0.5                    # mating probability (DNA crossover)
 MUTATION_RATE = 0.01                # mutation probability
 N_GENERATIONS = 1000
 
 DNA_SIZE = len(TARGET_PHRASE)
-TARGET_ASCII = np.fromstring(TARGET_PHRASE, dtype=np.uint8)  # convert string to number
+TARGET_ASCII = np.fromstring(TARGET_PHRASE, dtype=np.int8)  # convert string to number
 ASCII_BOUND = [32, 126]
 
 

@@ -2,6 +2,7 @@
 """
 Created on Sun Sep 23 2018
 @author: Vegelofe
+Learned from Morvan Python
 """
 
 import numpy as np
