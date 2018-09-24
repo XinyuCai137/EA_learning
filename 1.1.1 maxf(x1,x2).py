@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Sep 23 2018
+@author: Vegelofe
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -65,19 +71,21 @@ def select(pop, fitness):    # nature selection wrt pop's fitness
 # ax.plot_surface(x1, x2, z, rstride=1, cstride=1, cmap=plt.get_cmap('rainbow'))
 
 
-pop = (np.random.randint(2, size=(POP_SIZE, DNA_SIZE)))
-M_value = []
+if __name__ == '__main__':
 
-for _ in range(N_GENERATIONS) :
-    F_value = f(translateDNA(pop))
-    print("Most fitted DNA: ", pop[np.argmax(F_value), :], np.max(F_value))
-    M_value.append(np.max(F_value))
-    pop = select(pop, F_value)
-    pop_copy = pop.copy()
-    for parent in pop:
-        child = crossover(parent, pop_copy)
-        child = mutate(child)
-        parent[:] = child       # parent is replaced by its child
+    pop = (np.random.randint(2, size=(POP_SIZE, DNA_SIZE)))
+    M_value = []
 
-plt.plot(np.array(M_value))
-plt.show()
+    for _ in range(N_GENERATIONS) :
+        F_value = f(translateDNA(pop))
+        print("Most fitted DNA: ", pop[np.argmax(F_value), :], np.max(F_value))
+        M_value.append(np.max(F_value))
+        pop = select(pop, F_value)
+        pop_copy = pop.copy()
+        for parent in pop:
+            child = crossover(parent, pop_copy)
+            child = mutate(child)
+            parent[:] = child       # parent is replaced by its child
+
+    plt.plot(np.array(M_value))
+    plt.show()
